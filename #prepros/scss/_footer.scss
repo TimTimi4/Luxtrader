@@ -1,0 +1,169 @@
+.footer {
+	margin: 75px 0px 0px 0px;
+	padding: 30px 0px 20px 0px;
+	background-color: #1c242a;
+	@media (max-width: $md2) {
+		padding: 0px 0px 25px 0px;
+	}
+}
+.footer-body {
+	&__row {
+		@include flexbox;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		@media (max-width: $md2) {
+			text-align: center;
+			justify-content: center;
+		}
+	}
+}
+.row-footer {
+	&__logo {
+		padding: 40px 0px 0px 0px;
+		flex: 0 1 19%;
+		@media (max-width: $md2) {
+			flex: 1 1 100%;
+		}
+	}
+
+	&__nav {
+		flex: 0 1 51%;
+		@media (max-width: $md2) {
+			flex: 0 1 80%;
+			@media (max-width: $md4) {
+				flex: 0 1 100%;
+			}
+		}
+	}
+
+	&__telephone {
+		flex: 0 1 30%;
+		@media (max-width: $md2) {
+			flex: 0 1 36%;
+		}
+		@media (max-width: $md3) {
+			flex: 0 1 57%;
+		}
+		@media (max-width: $md4) {
+			flex: 0 1 95%;
+		}
+	}
+}
+.logo-row-footer {
+	margin: 0px 0px 30px 0px;
+	&__top {
+		padding: 0px 0px 20px 0px;
+		@media (max-width: $md2) {
+			padding: 0px 0px 5px 0px;
+		}
+	}
+
+	&__bottom {
+		font-size: 14px;
+		line-height: 21px;
+		font-weight: 400;
+		color: #bb9c66;
+	}
+}
+
+.nav-row-footer {
+	&__list {
+		padding: 0px 0px 20px 0px;
+		@include flexbox;
+		flex-wrap: wrap;
+		@media (max-width: $md2) {
+			padding: 0px 40px 20px 40px;
+			justify-content: space-evenly;
+		}
+		@media (max-width: $md4) {
+			padding: 0px 10px 20px 10px;
+			justify-content: space-evenly;
+		}
+	}
+	&__link {
+		font-family: PFDinTextCondPro;
+		font-size: 14px;
+		line-height: 25px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #ffffff;
+		padding: 0px 15px 0px 0px;
+		@media (max-width: $md4) {
+			padding: 0px 5px 0px 0px;
+		}
+		span {
+			line-height: 18px;
+			position: relative;
+			&::after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background-color: #bb9c66;
+				bottom: 0;
+				@include anim(0.3s, 0s);
+			}
+		}
+		&:hover {
+			color: #bb9c66;
+			span:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.telephone-row-footer {
+	padding: 0px 0px 0px 44px;
+
+	&__number {
+		max-width: 250px;
+		margin: 0 auto;
+	}
+
+	&__top {
+		position: relative;
+		font-family: PFDinTextCondPro;
+		font-size: 42px;
+		line-height: 25px;
+		font-weight: 400;
+		text-transform: uppercase;
+		color: #bb9c66;
+		padding: 0px 0px 20px 0px;
+
+		span {
+			position: absolute;
+			top: -6px;
+			left: -9%;
+			font-size: 25px;
+		}
+		@media (max-width: $md2) {
+			padding: 0px 0px 10px 0px;
+			margin: 20px 0px 0px 0px;
+		}
+	}
+
+	&__bottom {
+		display: block;
+		text-align: right;
+		font-size: 14px;
+		line-height: 21px;
+		font-weight: 400;
+		color: #bb9c66;
+		position: relative;
+		right: 15px;
+		&::after {
+			content: "";
+			position: absolute;
+			top: 5px;
+			right: 100px;
+			width: 8px;
+			height: 11px;
+			background: url(../img/footer/01.png) no-repeat;
+		}
+	}
+}

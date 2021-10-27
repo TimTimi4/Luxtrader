@@ -1,0 +1,321 @@
+header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 20;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		background-color: #1c242a;
+	}
+}
+
+.header-body {
+	@include flexbox;
+	justify-content: space-between;
+	align-items: center;
+	height: 75px;
+	padding: 0px 25px 0px 25px;
+	@media (max-width: $md2) {
+		height: 60px;
+	}
+	@media (max-width: $md3) {
+		padding: 0px 5px 0px 5px;
+		height: 45px;
+	}
+}
+
+.header {
+	&__logo {
+		display: inline-block;
+		width: 145px;
+		height: 35px;
+		z-index: 3;
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.header-menu {
+	@include flexbox;
+	&__nav {
+		padding: 17.7px 0px 0px 0px;
+		@media (max-width: $md3) {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: -100%;
+			left: 0;
+			background-color: #1c242a;
+			z-index: 1;
+			padding: 50px 10px 20px 10px;
+			// overflow: auto;
+			@include anim(0.3s, 0s);
+			&.active {
+				top: 0;
+			}
+		}
+	}
+
+	&__list {
+		font-family: "PFDinTextCondPro";
+		font-size: 14px;
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		position: relative;
+		z-index: 2;
+		@include flexbox;
+		@media (max-width: $md3) {
+			display: inline-block;
+		}
+	}
+
+	&__link {
+		color: #ffffff;
+		display: block;
+		font-size: 14px;
+		padding: 0px 17px;
+		@media (max-width: $md2) {
+			padding: 0px 10px;
+			font-size: 13px;
+		}
+		@media (max-width: $md3) {
+			padding: 20px 0px 0px 10px;
+			font-size: 13px;
+		}
+
+		// Отступ от последней ссылки
+		&_last {
+			&::after {
+				content: "";
+				padding: 0px 30px 0px 0px;
+				@media (max-width: $md2) {
+					padding: 0px 20px 0px 0px;
+				}
+			}
+		}
+
+		// Иконка глобуса
+		&_globo {
+			background: url("../img/header/header_globo.png") left no-repeat;
+			@media (max-width: $md2) {
+				background-size: 15px;
+			}
+			@media (max-width: $md3) {
+				background: url("../img/header/header_globo.png") right no-repeat;
+				background-position-y: 20px;
+			}
+			&::before {
+				content: "";
+				padding: 0px 7px 0px 0px;
+				@media (max-width: $md3) {
+					padding: 0px 0px 0px 0px;
+				}
+			}
+			&::after {
+				content: "";
+				padding: 0px 13px 0px 0px;
+				@media (max-width: $md3) {
+					padding: 0px 23px 0px 0px;
+				}
+			}
+		}
+
+		// Подчеркивание
+		span {
+			line-height: 18px;
+			position: relative;
+			&::after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background-color: #bb9c66;
+				bottom: 0;
+				@include anim(0.3s, 0s);
+			}
+		}
+		&:hover {
+			color: #bb9c66;
+			span:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+	}
+
+	// Бургер
+	&__burger {
+		display: none;
+		width: 27px;
+		height: 16px;
+		cursor: pointer;
+		z-index: 5;
+		position: relative;
+		top: 15px;
+		right: 0px;
+		span {
+			@include anim(0.3s, 0s);
+			top: 7px;
+			left: 0px;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #bb9c66;
+			&:first-child {
+				top: 0px;
+			}
+			&:last-child {
+				top: auto;
+				bottom: 0px;
+			}
+		}
+		&.active {
+			span {
+				@include scale(0);
+				&:first-child {
+					@include rotate(45deg);
+					top: 7px;
+				}
+				&:last-child {
+					@include rotate(-45deg);
+					bottom: 7px;
+				}
+			}
+		}
+		@media (max-width: $md3) {
+			display: block;
+		}
+	}
+}
+
+// Иконка юзера
+.header-user {
+	@include flexbox;
+	padding: 15px 15px 0px 0px;
+	z-index: 3;
+	&__item {
+		display: inline-block;
+		width: 18px;
+		img {
+			max-width: 100%;
+		}
+	}
+	&__arrows {
+		padding: 3px 0px 0px 6px;
+	}
+}
+.header-arrows {
+	@include flexbox;
+	flex-direction: column;
+	position: relative;
+	&.active .header-user__submenu {
+		display: block;
+	}
+	&__up {
+		padding: 0px 0px 3px 0px;
+		width: 8px;
+		img {
+			max-width: 100%;
+		}
+	}
+	&__down {
+		width: 8px;
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.header-user {
+	&__submenu {
+		display: none;
+		position: absolute;
+		top: 20px;
+		right: 0;
+		min-width: 176px;
+		padding: 25px 0px 20px 0px;
+		@media (max-width: $md3) {
+			top: 0;
+			right: -45px;
+			padding: 27px 0px 20px 0px;
+		}
+		&.active {
+			display: block;
+		}
+
+		& > li {
+			background-color: #1c242a;
+			padding: 0px 25px 0px 20px;
+			@media (max-width: $md3) {
+				padding: 0px 0px 0px 15px;
+			}
+			&:first-child {
+				padding: 0px 25px 0px 20px;
+				@media (max-width: $md3) {
+					padding: 0px 0px 0px 15px;
+				}
+			}
+			&:last-child {
+				padding: 0px 25px 15px 20px;
+				@media (max-width: $md3) {
+					padding: 0px 0px 0px 15px;
+				}
+			}
+		}
+	}
+
+	&__link {
+		font-size: 14px;
+		line-height: 27px;
+		font-weight: 400;
+		color: #ffffff;
+		padding: 0px 0px 0px 30px;
+		span {
+			line-height: 18px;
+			position: relative;
+			&::after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				width: 0;
+				height: 1px;
+				background-color: #bb9c66;
+				bottom: 0;
+				@include anim(0.3s, 0s);
+			}
+		}
+		&:hover {
+			color: #bb9c66;
+			span:after {
+				left: 0;
+				width: 100%;
+			}
+		}
+		&_icon1 {
+			background: url(../img/header/user_window/01.png) left no-repeat;
+		}
+
+		&_icon2 {
+			background: url(../img/header/user_window/02.png) left no-repeat;
+		}
+
+		&_icon3 {
+			background: url(../img/header/user_window/03.png) left no-repeat;
+		}
+
+		&_icon4 {
+			background: url(../img/header/user_window/04.png) left no-repeat;
+		}
+	}
+}
